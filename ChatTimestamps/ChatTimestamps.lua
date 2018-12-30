@@ -85,7 +85,7 @@ function ChatTimestamps_SlashCommand(msg)
                         DEFAULT_CHAT_FRAME:AddMessage("|cffffff00ChatTimestamps Format: "..ChatTimestampsSettings.Format);
 
                 elseif ((command == "format") and (strlen(params) > 0)) then
-						params = string.gsub(params, "||", "|");
+                        params = string.gsub(params, "||", "|");
                         ChatTimestampsSettings.Format = params;
                         DEFAULT_CHAT_FRAME:AddMessage("|cffffff00ChatTimestamps Format set to: \""..ChatTimestampsSettings.Format.."\"");
 
