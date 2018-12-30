@@ -7,6 +7,10 @@ function ChatTimestamps_ChatFrame_AddMessage(self, msg, a1,a2,a3,a4,a5,a6,a7,a8,
   return self:ChatTimestamps_Orig_AddMessage(ChatTimestamps_AddTimeStamp(msg),a1,a2,a3,a4,a5,a6,a7,a8,a9);
 end
 
+function ChatTimestamps_Trim(s)
+   return string.gsub(s, "^%s*(.-)%s*$", "%1");
+end
+
 function ChatTimestamps_OnEvent()
              if not (ChatTimestampsSettings) then
                -- Default Settings
@@ -31,7 +35,7 @@ function ChatTimestamps_OnLoad()
         CTS_MainFrame:RegisterEvent("VARIABLES_LOADED");
 
            if( DEFAULT_CHAT_FRAME ) then
-               DEFAULT_CHAT_FRAME:AddMessage("|cffffff00ChatTimestamps 1.2 loaded");
+               DEFAULT_CHAT_FRAME:AddMessage("|cffffff00ChatTimestamps 1.6a loaded");
            else
                UIErrorsFrame:AddMessage("ChatTimestamps AddOn loaded", 1.0, 1.0, 1.0, 1.0, UIERRORS_HOLD_TIME);
            end
@@ -68,12 +72,12 @@ function ChatTimestamps_SlashCommand(msg)
 
         -- Check the command
         if (msg) then
-                local command = strtrim(msg);
+                local command = ChatTimestamps_Trim(msg);
                 local params = "";
 
                 if (strfind(command," ") ~= nul) then
                   command = strsub(command,0,strfind(command," ")-1);
-                  params  = strtrim(strsub(msg,strfind(msg,command)+strlen(command)));
+                  params  = ChatTimestamps_Trim(strsub(msg,strfind(msg,command)+strlen(command)));
                   command = strlower(command);
                 end
 
@@ -81,7 +85,7 @@ function ChatTimestamps_SlashCommand(msg)
                         DEFAULT_CHAT_FRAME:AddMessage("|cffffff00ChatTimestamps Format: "..ChatTimestampsSettings.Format);
 
                 elseif ((command == "format") and (strlen(params) > 0)) then
-                        params = strreplace(params,"||","|");
+						params = string.gsub(params, "||", "|");
                         ChatTimestampsSettings.Format = params;
                         DEFAULT_CHAT_FRAME:AddMessage("|cffffff00ChatTimestamps Format set to: \""..ChatTimestampsSettings.Format.."\"");
 
