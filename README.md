@@ -11,8 +11,8 @@ This very tiny mod adds a customizable timestamp (defaulted to [HH:MM:SS] format
 Unlike some other addons for timestamps (just like Prat plugin for instance), this works perfectly with every Combat Log window aswell.
 
 # Commands
-/cts format <timeformat> - sets timestamp format
-/cts status - displays settings
+* /cts format <timeformat> - sets timestamp format
+* /cts status - displays settings
 
 # Format Examples
 Assuming time is 14:50:21
