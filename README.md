@@ -1,7 +1,7 @@
 # ChatTimestamps
 Vanialla World of Warcraft Chat Addon created by Skizo in 2008
 
-I just fixed the error that occured when the addon is used with WoW Vanialla client 1.12 on private servers.
+I just fixed the errors that occured when the addon is used with WoW Vanialla client 1.12 on private servers.
 
 Here is the updated original description:
 
