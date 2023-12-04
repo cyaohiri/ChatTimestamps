@@ -68,7 +68,7 @@ function ChatTimestamps_AddTimeStamp(msg)
 	  dateFormatted  = date(locFormat)
 	  local lastChar = string.sub(dateFormatted, -1)
 	  local stringWithoutLast = string.sub(dateFormatted, 1, -2)
-	  dateFormatted = stringWithoutLast .. "." .. milliseconds .. lastChar
+	  dateFormatted = stringWithoutLast .. "." .. string.format("%03d", milliseconds) .. lastChar
 
 	  msg = dateFormatted.." "..msg;  -- TimeStamp Format
 	end
