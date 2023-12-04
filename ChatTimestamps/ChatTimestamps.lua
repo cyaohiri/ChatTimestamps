@@ -63,7 +63,14 @@ function ChatTimestamps_AddTimeStamp(msg)
             if (strsub(ParsedTime,1,1) == "0") then ParsedTime = strsub(ParsedTime,2); end;
             locFormat = gsub(locFormat, "#I", ParsedTime);
           end
-	  msg = date(locFormat).." "..msg;  -- TimeStamp Format
+	  -- Inserting milliseconds here as they're not available in date()
+	  milliseconds = math.floor(math.mod(GetTime(), 1) * 1000)
+	  dateFormatted  = date(locFormat)
+	  local lastChar = string.sub(dateFormatted, -1)
+	  local stringWithoutLast = string.sub(dateFormatted, 1, -2)
+	  dateFormatted = stringWithoutLast .. "." .. milliseconds .. lastChar
+
+	  msg = dateFormatted.." "..msg;  -- TimeStamp Format
 	end
 	return msg;
 end
